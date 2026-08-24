@@ -14,16 +14,204 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      projects: {
+        Row: {
+          category: string
+          content_md: string
+          cover_image_url: string | null
+          created_at: string
+          excel_meta: string | null
+          excel_url: string | null
+          external_url: string | null
+          featured: boolean
+          gallery: string[]
+          id: string
+          pdf_meta: string | null
+          pdf_url: string | null
+          project_date: string
+          published: boolean
+          slug: string
+          summary: string
+          title: string
+          tools: string[]
+          updated_at: string
+        }
+        Insert: {
+          category?: string
+          content_md?: string
+          cover_image_url?: string | null
+          created_at?: string
+          excel_meta?: string | null
+          excel_url?: string | null
+          external_url?: string | null
+          featured?: boolean
+          gallery?: string[]
+          id?: string
+          pdf_meta?: string | null
+          pdf_url?: string | null
+          project_date?: string
+          published?: boolean
+          slug: string
+          summary?: string
+          title: string
+          tools?: string[]
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          content_md?: string
+          cover_image_url?: string | null
+          created_at?: string
+          excel_meta?: string | null
+          excel_url?: string | null
+          external_url?: string | null
+          featured?: boolean
+          gallery?: string[]
+          id?: string
+          pdf_meta?: string | null
+          pdf_url?: string | null
+          project_date?: string
+          published?: boolean
+          slug?: string
+          summary?: string
+          title?: string
+          tools?: string[]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      research: {
+        Row: {
+          author: string
+          category: string
+          content_md: string
+          cover_image_url: string | null
+          created_at: string
+          excel_meta: string | null
+          excel_url: string | null
+          external_url: string | null
+          featured: boolean
+          id: string
+          pdf_meta: string | null
+          pdf_url: string | null
+          publication_date: string
+          published: boolean
+          reading_time: number | null
+          slug: string
+          sources: Json
+          subtitle: string | null
+          summary: string
+          tags: string[]
+          ticker: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string
+          category?: string
+          content_md?: string
+          cover_image_url?: string | null
+          created_at?: string
+          excel_meta?: string | null
+          excel_url?: string | null
+          external_url?: string | null
+          featured?: boolean
+          id?: string
+          pdf_meta?: string | null
+          pdf_url?: string | null
+          publication_date?: string
+          published?: boolean
+          reading_time?: number | null
+          slug: string
+          sources?: Json
+          subtitle?: string | null
+          summary?: string
+          tags?: string[]
+          ticker?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          category?: string
+          content_md?: string
+          cover_image_url?: string | null
+          created_at?: string
+          excel_meta?: string | null
+          excel_url?: string | null
+          external_url?: string | null
+          featured?: boolean
+          id?: string
+          pdf_meta?: string | null
+          pdf_url?: string | null
+          publication_date?: string
+          published?: boolean
+          reading_time?: number | null
+          slug?: string
+          sources?: Json
+          subtitle?: string | null
+          summary?: string
+          tags?: string[]
+          ticker?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value?: Json
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +338,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin"],
+    },
   },
 } as const
