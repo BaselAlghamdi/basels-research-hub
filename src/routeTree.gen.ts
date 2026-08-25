@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ResearchIndexRouteImport } from './routes/research/index'
 import { Route as ApiPublicFilesSplatRouteImport } from './routes/api/public/files/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchIndexRoute = ResearchIndexRouteImport.update({
+  id: '/research/',
+  path: '/research/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicFilesSplatRoute = ApiPublicFilesSplatRouteImport.update({
@@ -25,27 +31,31 @@ const ApiPublicFilesSplatRoute = ApiPublicFilesSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/research/': typeof ResearchIndexRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/research': typeof ResearchIndexRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/research/': typeof ResearchIndexRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/public/files/$'
+  fullPaths: '/' | '/research/' | '/api/public/files/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/public/files/$'
-  id: '__root__' | '/' | '/api/public/files/$'
+  to: '/' | '/research' | '/api/public/files/$'
+  id: '__root__' | '/' | '/research/' | '/api/public/files/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ResearchIndexRoute: typeof ResearchIndexRoute
   ApiPublicFilesSplatRoute: typeof ApiPublicFilesSplatRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research/': {
+      id: '/research/'
+      path: '/research'
+      fullPath: '/research/'
+      preLoaderRoute: typeof ResearchIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/files/$': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ResearchIndexRoute: ResearchIndexRoute,
   ApiPublicFilesSplatRoute: ApiPublicFilesSplatRoute,
 }
 export const routeTree = rootRouteImport
