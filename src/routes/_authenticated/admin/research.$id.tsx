@@ -12,7 +12,7 @@ export const Route = createFileRoute("/_authenticated/admin/research/$id")({
   head: () => ({
     meta: [{ title: "Edit research — Admin" }, { name: "robots", content: "noindex" }],
   }),
-  component: ResearchEditor;
+  component: ResearchEditor,
 });
 
 type Draft = {
