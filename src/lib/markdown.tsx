@@ -28,8 +28,8 @@ function parseInline(text: string, keyPrefix: string): ReactNode[] {
         nodes.push(
           <img
             key={key}
-            src={m[2]}
-            alt={m[1]}
+            src={m[2] ?? ""}
+            alt={m[1] ?? ""}
             loading="lazy"
             className="my-2 w-full border border-border"
           />,
@@ -37,14 +37,14 @@ function parseInline(text: string, keyPrefix: string): ReactNode[] {
     } else if (token.startsWith("[")) {
       const m = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(token);
       if (m) {
-        const external = /^https?:\/\//.test(m[2]);
+        const external = /^https?:\/\//.test(m[2] ?? "");
         nodes.push(
           <a
             key={key}
-            href={m[2]}
+            href={m[2] ?? "#"}
             {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
-            {m[1]}
+            {m[1] ?? ""}
           </a>,
         );
       }
@@ -83,7 +83,7 @@ export function renderMarkdown(source: string): ReactNode[] {
   const isImageOnly = (line: string) => /^!\[[^\]]*\]\([^)]+\)$/.test(line.trim());
 
   while (index < lines.length) {
-    const raw = lines[index];
+    const raw = lines[index] ?? "";
     const line = raw.trim();
 
     if (!line) {
@@ -101,9 +101,10 @@ export function renderMarkdown(source: string): ReactNode[] {
     // headings
     const heading = /^(#{1,3})\s+(.*)$/.exec(line);
     if (heading) {
-      const level = heading[1].length;
-      const content = parseInline(heading[2], `b${key}`);
-      const id = heading[2]
+      const level = (heading[1] ?? "").length;
+      const headingText = heading[2] ?? "";
+      const content = parseInline(headingText, `b${key}`);
+      const id = headingText
         .toLowerCase()
         .replace(/[^a-z0-9\s-]/g, "")
         .trim()
@@ -116,12 +117,12 @@ export function renderMarkdown(source: string): ReactNode[] {
     }
 
     // table
-    if (line.includes("|") && index + 1 < lines.length && isTableDivider(lines[index + 1])) {
+    if (line.includes("|") && index + 1 < lines.length && isTableDivider(lines[index + 1] ?? "")) {
       const headers = splitRow(line);
       const rows: string[][] = [];
       index += 2;
-      while (index < lines.length && lines[index].trim().includes("|")) {
-        rows.push(splitRow(lines[index].trim()));
+      while (index < lines.length && (lines[index] ?? "").trim().includes("|")) {
+        rows.push(splitRow((lines[index] ?? "").trim()));
         index += 1;
       }
       blocks.push(
@@ -156,8 +157,8 @@ export function renderMarkdown(source: string): ReactNode[] {
     // blockquote
     if (line.startsWith(">")) {
       const buffer: string[] = [];
-      while (index < lines.length && lines[index].trim().startsWith(">")) {
-        buffer.push(lines[index].trim().replace(/^>\s?/, ""));
+      while (index < lines.length && (lines[index] ?? "").trim().startsWith(">")) {
+        buffer.push((lines[index] ?? "").trim().replace(/^>\s?/, ""));
         index += 1;
       }
       blocks.push(
@@ -169,8 +170,8 @@ export function renderMarkdown(source: string): ReactNode[] {
     // unordered list
     if (/^[-*+]\s+/.test(line)) {
       const items: string[] = [];
-      while (index < lines.length && /^[-*+]\s+/.test(lines[index].trim())) {
-        items.push(lines[index].trim().replace(/^[-*+]\s+/, ""));
+      while (index < lines.length && /^[-*+]\s+/.test((lines[index] ?? "").trim())) {
+        items.push((lines[index] ?? "").trim().replace(/^[-*+]\s+/, ""));
         index += 1;
       }
       blocks.push(
@@ -186,8 +187,8 @@ export function renderMarkdown(source: string): ReactNode[] {
     // ordered list
     if (/^\d+[.)]\s+/.test(line)) {
       const items: string[] = [];
-      while (index < lines.length && /^\d+[.)]\s+/.test(lines[index].trim())) {
-        items.push(lines[index].trim().replace(/^\d+[.)]\s+/, ""));
+      while (index < lines.length && /^\d+[.)]\s+/.test((lines[index] ?? "").trim())) {
+        items.push((lines[index] ?? "").trim().replace(/^\d+[.)]\s+/, ""));
         index += 1;
       }
       blocks.push(
@@ -240,7 +241,7 @@ export function renderMarkdown(source: string): ReactNode[] {
     // paragraph
     const paragraph: string[] = [];
     while (index < lines.length) {
-      const current = lines[index].trim();
+      const current = (lines[index] ?? "").trim();
       if (
         !current ||
         /^(#{1,3})\s+/.test(current) ||
