@@ -19,6 +19,7 @@ import { Route as ProjectsSlugRouteImport } from './routes/projects/$slug'
 import { Route as ResearchIndexRouteImport } from './routes/research/index'
 import { Route as ResearchSlugRouteImport } from './routes/research/$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminResearchIdRouteImport } from './routes/_authenticated/admin/research.$id'
 import { Route as ApiPublicFilesSplatRouteImport } from './routes/api/public/files/$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -70,6 +71,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminResearchIdRoute =
+  AuthenticatedAdminResearchIdRouteImport.update({
+    id: '/admin/research/$id',
+    path: '/admin/research/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const ApiPublicFilesSplatRoute = ApiPublicFilesSplatRouteImport.update({
   id: '/api/public/files/$',
   path: '/api/public/files/$',
@@ -86,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/projects/': typeof ProjectsIndexRoute
   '/research/': typeof ResearchIndexRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
 export interface FileRoutesByTo {
@@ -98,6 +106,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsIndexRoute
   '/research': typeof ResearchIndexRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
 export interface FileRoutesById {
@@ -112,6 +121,7 @@ export interface FileRoutesById {
   '/projects/': typeof ProjectsIndexRoute
   '/research/': typeof ResearchIndexRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
 export interface FileRouteTypes {
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/projects/'
     | '/research/'
     | '/admin/'
+    | '/admin/research/$id'
     | '/api/public/files/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/research'
     | '/admin'
+    | '/admin/research/$id'
     | '/api/public/files/$'
   id:
     | '__root__'
@@ -151,6 +163,7 @@ export interface FileRouteTypes {
     | '/projects/'
     | '/research/'
     | '/_authenticated/admin/'
+    | '/_authenticated/admin/research/$id'
     | '/api/public/files/$'
   fileRoutesById: FileRoutesById
 }
@@ -239,6 +252,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/research/$id': {
+      id: '/_authenticated/admin/research/$id'
+      path: '/admin/research/$id'
+      fullPath: '/admin/research/$id'
+      preLoaderRoute: typeof AuthenticatedAdminResearchIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/api/public/files/$': {
       id: '/api/public/files/$'
       path: '/api/public/files/$'
@@ -251,10 +271,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminResearchIdRoute: typeof AuthenticatedAdminResearchIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminResearchIdRoute: AuthenticatedAdminResearchIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
