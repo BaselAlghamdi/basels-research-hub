@@ -19,6 +19,7 @@ import { Route as ProjectsSlugRouteImport } from './routes/projects/$slug'
 import { Route as ResearchIndexRouteImport } from './routes/research/index'
 import { Route as ResearchSlugRouteImport } from './routes/research/$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminProjectsIdRouteImport } from './routes/_authenticated/admin/projects.$id'
 import { Route as AuthenticatedAdminResearchIdRouteImport } from './routes/_authenticated/admin/research.$id'
 import { Route as ApiPublicFilesSplatRouteImport } from './routes/api/public/files/$'
 
@@ -71,6 +72,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminProjectsIdRoute =
+  AuthenticatedAdminProjectsIdRouteImport.update({
+    id: '/admin/projects/$id',
+    path: '/admin/projects/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminResearchIdRoute =
   AuthenticatedAdminResearchIdRouteImport.update({
     id: '/admin/research/$id',
@@ -93,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/projects/': typeof ProjectsIndexRoute
   '/research/': typeof ResearchIndexRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/projects/$id': typeof AuthenticatedAdminProjectsIdRoute
   '/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
@@ -106,6 +114,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsIndexRoute
   '/research': typeof ResearchIndexRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/projects/$id': typeof AuthenticatedAdminProjectsIdRoute
   '/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
@@ -121,6 +130,7 @@ export interface FileRoutesById {
   '/projects/': typeof ProjectsIndexRoute
   '/research/': typeof ResearchIndexRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/projects/$id': typeof AuthenticatedAdminProjectsIdRoute
   '/_authenticated/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/projects/'
     | '/research/'
     | '/admin/'
+    | '/admin/projects/$id'
     | '/admin/research/$id'
     | '/api/public/files/$'
   fileRoutesByTo: FileRoutesByTo
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/research'
     | '/admin'
+    | '/admin/projects/$id'
     | '/admin/research/$id'
     | '/api/public/files/$'
   id:
@@ -163,6 +175,7 @@ export interface FileRouteTypes {
     | '/projects/'
     | '/research/'
     | '/_authenticated/admin/'
+    | '/_authenticated/admin/projects/$id'
     | '/_authenticated/admin/research/$id'
     | '/api/public/files/$'
   fileRoutesById: FileRoutesById
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/projects/$id': {
+      id: '/_authenticated/admin/projects/$id'
+      path: '/admin/projects/$id'
+      fullPath: '/admin/projects/$id'
+      preLoaderRoute: typeof AuthenticatedAdminProjectsIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/research/$id': {
       id: '/_authenticated/admin/research/$id'
       path: '/admin/research/$id'
@@ -271,11 +291,13 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminProjectsIdRoute: typeof AuthenticatedAdminProjectsIdRoute
   AuthenticatedAdminResearchIdRoute: typeof AuthenticatedAdminResearchIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminProjectsIdRoute: AuthenticatedAdminProjectsIdRoute,
   AuthenticatedAdminResearchIdRoute: AuthenticatedAdminResearchIdRoute,
 }
 
