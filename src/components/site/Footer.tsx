@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
+import { Linkedin, Mail } from "lucide-react";
 
 import { DEFAULT_PROFILE, settingsQuery } from "@/lib/content";
 
