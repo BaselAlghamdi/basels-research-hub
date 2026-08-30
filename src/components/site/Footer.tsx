@@ -30,7 +30,7 @@ export function Footer() {
               <Link to="/about" className="text-muted-foreground hover:text-foreground">
                 About
               </Link>
-              <Link to="/admin" className="text-muted-foreground/50 hover:text-foreground">
+              <Link to="/k7m2q-desk-x8v41" className="text-muted-foreground/50 hover:text-foreground">
                 Admin
               </Link>
             </div>

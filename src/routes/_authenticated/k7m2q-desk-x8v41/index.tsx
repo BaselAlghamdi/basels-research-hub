@@ -5,7 +5,7 @@ import { adminProjectsQuery, adminResearchQuery, isAdminQuery } from "@/lib/admi
 import { formatDate } from "@/lib/content";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/_authenticated/admin/")({
+export const Route = createFileRoute("/_authenticated/k7m2q-desk-x8v41/")({
   head: () => ({
     meta: [{ title: "Admin — Basel M. Alghamdi" }, { name: "robots", content: "noindex" }],
   }),
@@ -62,7 +62,7 @@ function AdminDashboard() {
         </div>
         <div className="flex flex-wrap gap-2">
           <Link
-            to="/admin/settings"
+            to="/k7m2q-desk-x8v41/settings"
             className="border border-input px-3 py-1.5 text-xs font-medium hover:bg-surface"
           >
             Site settings
@@ -77,7 +77,7 @@ function AdminDashboard() {
         <div className="flex items-end justify-between border-b border-foreground pb-2">
           <h2 className="label-eyebrow text-foreground">Research</h2>
           <Link
-            to="/admin/research/$id"
+            to="/k7m2q-desk-x8v41/research/$id"
             params={{ id: "new" }}
             className="bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-accent"
           >
@@ -103,7 +103,7 @@ function AdminDashboard() {
                   View
                 </Link>
                 <Link
-                  to="/admin/research/$id"
+                  to="/k7m2q-desk-x8v41/research/$id"
                   params={{ id: item.id }}
                   className="border border-input px-2.5 py-1 text-xs"
                 >
@@ -128,7 +128,7 @@ function AdminDashboard() {
         <div className="flex items-end justify-between border-b border-foreground pb-2">
           <h2 className="label-eyebrow text-foreground">Projects</h2>
           <Link
-            to="/admin/projects/$id"
+            to="/k7m2q-desk-x8v41/projects/$id"
             params={{ id: "new" }}
             className="bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-accent"
           >
@@ -154,7 +154,7 @@ function AdminDashboard() {
                   View
                 </Link>
                 <Link
-                  to="/admin/projects/$id"
+                  to="/k7m2q-desk-x8v41/projects/$id"
                   params={{ id: item.id }}
                   className="border border-input px-2.5 py-1 text-xs"
                 >

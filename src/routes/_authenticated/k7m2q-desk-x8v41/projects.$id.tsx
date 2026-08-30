@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { adminProjectsQuery, slugify } from "@/lib/admin";
 import { PROJECT_CATEGORIES } from "@/lib/content";
 
-export const Route = createFileRoute("/_authenticated/admin/projects/$id")({
+export const Route = createFileRoute("/_authenticated/k7m2q-desk-x8v41/projects/$id")({
   head: () => ({
     meta: [{ title: "Edit project — Admin" }, { name: "robots", content: "noindex" }],
   }),
@@ -128,7 +128,7 @@ function ProjectEditor() {
       return;
     }
     queryClient.invalidateQueries();
-    navigate({ to: "/admin" });
+    navigate({ to: "/k7m2q-desk-x8v41" });
   }
 
   if (!loaded) {
@@ -137,7 +137,7 @@ function ProjectEditor() {
 
   return (
     <div className="mx-auto max-w-3xl px-5 py-12 sm:px-8">
-      <Link to="/admin" className="text-xs text-muted-foreground hover:text-foreground">
+      <Link to="/k7m2q-desk-x8v41" className="text-xs text-muted-foreground hover:text-foreground">
         ← Back to content manager
       </Link>
       <h1 className="mt-4 text-2xl">{isNew ? "New project" : "Edit project"}</h1>
@@ -293,7 +293,7 @@ function ProjectEditor() {
           >
             {saving ? "Saving…" : "Save"}
           </button>
-          <Link to="/admin" className="border border-input px-4 py-2 text-sm">
+          <Link to="/k7m2q-desk-x8v41" className="border border-input px-4 py-2 text-sm">
             Cancel
           </Link>
         </div>
