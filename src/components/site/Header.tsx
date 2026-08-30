@@ -1,6 +1,21 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Linkedin, Mail, Menu, X } from "lucide-react";
 import { useState } from "react";
+
+const SOCIALS = [
+  {
+    href: "https://www.linkedin.com/in/imbasel",
+    label: "LinkedIn",
+    Icon: Linkedin,
+    external: true,
+  },
+  {
+    href: "mailto:baselmsalghamdi@gmail.com",
+    label: "Email",
+    Icon: Mail,
+    external: false,
+  },
+] as const;
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -39,15 +54,28 @@ export function Header() {
           ))}
         </nav>
 
-        <button
-          type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          className="-mr-2 p-2 text-foreground md:hidden"
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+        <div className="flex items-center gap-1.5 md:gap-2">
+          {SOCIALS.map(({ href, label, Icon, external }) => (
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+              className="flex size-8 items-center justify-center border border-input text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+            >
+              <Icon className="size-4" strokeWidth={1.75} />
+            </a>
+          ))}
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="-mr-2 p-2 text-foreground md:hidden"
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
       </div>
 
       {open ? (
