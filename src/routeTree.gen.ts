@@ -18,10 +18,10 @@ import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects/$slug'
 import { Route as ResearchIndexRouteImport } from './routes/research/index'
 import { Route as ResearchSlugRouteImport } from './routes/research/$slug'
-import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
-import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin/settings'
-import { Route as AuthenticatedAdminProjectsIdRouteImport } from './routes/_authenticated/admin/projects.$id'
-import { Route as AuthenticatedAdminResearchIdRouteImport } from './routes/_authenticated/admin/research.$id'
+import { Route as AuthenticatedK7m2qDeskX8v41IndexRouteImport } from './routes/_authenticated/k7m2q-desk-x8v41/index'
+import { Route as AuthenticatedK7m2qDeskX8v41SettingsRouteImport } from './routes/_authenticated/k7m2q-desk-x8v41/settings'
+import { Route as AuthenticatedK7m2qDeskX8v41ProjectsIdRouteImport } from './routes/_authenticated/k7m2q-desk-x8v41/projects.$id'
+import { Route as AuthenticatedK7m2qDeskX8v41ResearchIdRouteImport } from './routes/_authenticated/k7m2q-desk-x8v41/research.$id'
 import { Route as ApiPublicFilesSplatRouteImport } from './routes/api/public/files/$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -68,27 +68,28 @@ const ResearchSlugRoute = ResearchSlugRouteImport.update({
   path: '/research/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
-  id: '/admin/',
-  path: '/admin/',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedAdminSettingsRoute =
-  AuthenticatedAdminSettingsRouteImport.update({
-    id: '/admin/settings',
-    path: '/admin/settings',
+const AuthenticatedK7m2qDeskX8v41IndexRoute =
+  AuthenticatedK7m2qDeskX8v41IndexRouteImport.update({
+    id: '/k7m2q-desk-x8v41/',
+    path: '/k7m2q-desk-x8v41/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedAdminProjectsIdRoute =
-  AuthenticatedAdminProjectsIdRouteImport.update({
-    id: '/admin/projects/$id',
-    path: '/admin/projects/$id',
+const AuthenticatedK7m2qDeskX8v41SettingsRoute =
+  AuthenticatedK7m2qDeskX8v41SettingsRouteImport.update({
+    id: '/k7m2q-desk-x8v41/settings',
+    path: '/k7m2q-desk-x8v41/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedAdminResearchIdRoute =
-  AuthenticatedAdminResearchIdRouteImport.update({
-    id: '/admin/research/$id',
-    path: '/admin/research/$id',
+const AuthenticatedK7m2qDeskX8v41ProjectsIdRoute =
+  AuthenticatedK7m2qDeskX8v41ProjectsIdRouteImport.update({
+    id: '/k7m2q-desk-x8v41/projects/$id',
+    path: '/k7m2q-desk-x8v41/projects/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedK7m2qDeskX8v41ResearchIdRoute =
+  AuthenticatedK7m2qDeskX8v41ResearchIdRouteImport.update({
+    id: '/k7m2q-desk-x8v41/research/$id',
+    path: '/k7m2q-desk-x8v41/research/$id',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const ApiPublicFilesSplatRoute = ApiPublicFilesSplatRouteImport.update({
@@ -106,10 +107,10 @@ export interface FileRoutesByFullPath {
   '/research/$slug': typeof ResearchSlugRoute
   '/projects/': typeof ProjectsIndexRoute
   '/research/': typeof ResearchIndexRoute
-  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
-  '/admin/': typeof AuthenticatedAdminIndexRoute
-  '/admin/projects/$id': typeof AuthenticatedAdminProjectsIdRoute
-  '/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
+  '/k7m2q-desk-x8v41/settings': typeof AuthenticatedK7m2qDeskX8v41SettingsRoute
+  '/k7m2q-desk-x8v41/': typeof AuthenticatedK7m2qDeskX8v41IndexRoute
+  '/k7m2q-desk-x8v41/projects/$id': typeof AuthenticatedK7m2qDeskX8v41ProjectsIdRoute
+  '/k7m2q-desk-x8v41/research/$id': typeof AuthenticatedK7m2qDeskX8v41ResearchIdRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
 export interface FileRoutesByTo {
@@ -121,10 +122,10 @@ export interface FileRoutesByTo {
   '/research/$slug': typeof ResearchSlugRoute
   '/projects': typeof ProjectsIndexRoute
   '/research': typeof ResearchIndexRoute
-  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
-  '/admin': typeof AuthenticatedAdminIndexRoute
-  '/admin/projects/$id': typeof AuthenticatedAdminProjectsIdRoute
-  '/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
+  '/k7m2q-desk-x8v41/settings': typeof AuthenticatedK7m2qDeskX8v41SettingsRoute
+  '/k7m2q-desk-x8v41': typeof AuthenticatedK7m2qDeskX8v41IndexRoute
+  '/k7m2q-desk-x8v41/projects/$id': typeof AuthenticatedK7m2qDeskX8v41ProjectsIdRoute
+  '/k7m2q-desk-x8v41/research/$id': typeof AuthenticatedK7m2qDeskX8v41ResearchIdRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
 export interface FileRoutesById {
@@ -138,10 +139,10 @@ export interface FileRoutesById {
   '/research/$slug': typeof ResearchSlugRoute
   '/projects/': typeof ProjectsIndexRoute
   '/research/': typeof ResearchIndexRoute
-  '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
-  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
-  '/_authenticated/admin/projects/$id': typeof AuthenticatedAdminProjectsIdRoute
-  '/_authenticated/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
+  '/_authenticated/k7m2q-desk-x8v41/settings': typeof AuthenticatedK7m2qDeskX8v41SettingsRoute
+  '/_authenticated/k7m2q-desk-x8v41/': typeof AuthenticatedK7m2qDeskX8v41IndexRoute
+  '/_authenticated/k7m2q-desk-x8v41/projects/$id': typeof AuthenticatedK7m2qDeskX8v41ProjectsIdRoute
+  '/_authenticated/k7m2q-desk-x8v41/research/$id': typeof AuthenticatedK7m2qDeskX8v41ResearchIdRoute
   '/api/public/files/$': typeof ApiPublicFilesSplatRoute
 }
 export interface FileRouteTypes {
@@ -155,10 +156,10 @@ export interface FileRouteTypes {
     | '/research/$slug'
     | '/projects/'
     | '/research/'
-    | '/admin/settings'
-    | '/admin/'
-    | '/admin/projects/$id'
-    | '/admin/research/$id'
+    | '/k7m2q-desk-x8v41/settings'
+    | '/k7m2q-desk-x8v41/'
+    | '/k7m2q-desk-x8v41/projects/$id'
+    | '/k7m2q-desk-x8v41/research/$id'
     | '/api/public/files/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -170,10 +171,10 @@ export interface FileRouteTypes {
     | '/research/$slug'
     | '/projects'
     | '/research'
-    | '/admin/settings'
-    | '/admin'
-    | '/admin/projects/$id'
-    | '/admin/research/$id'
+    | '/k7m2q-desk-x8v41/settings'
+    | '/k7m2q-desk-x8v41'
+    | '/k7m2q-desk-x8v41/projects/$id'
+    | '/k7m2q-desk-x8v41/research/$id'
     | '/api/public/files/$'
   id:
     | '__root__'
@@ -186,10 +187,10 @@ export interface FileRouteTypes {
     | '/research/$slug'
     | '/projects/'
     | '/research/'
-    | '/_authenticated/admin/settings'
-    | '/_authenticated/admin/'
-    | '/_authenticated/admin/projects/$id'
-    | '/_authenticated/admin/research/$id'
+    | '/_authenticated/k7m2q-desk-x8v41/settings'
+    | '/_authenticated/k7m2q-desk-x8v41/'
+    | '/_authenticated/k7m2q-desk-x8v41/projects/$id'
+    | '/_authenticated/k7m2q-desk-x8v41/research/$id'
     | '/api/public/files/$'
   fileRoutesById: FileRoutesById
 }
@@ -271,32 +272,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/admin/': {
-      id: '/_authenticated/admin/'
-      path: '/admin'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+    '/_authenticated/k7m2q-desk-x8v41/': {
+      id: '/_authenticated/k7m2q-desk-x8v41/'
+      path: '/k7m2q-desk-x8v41'
+      fullPath: '/k7m2q-desk-x8v41/'
+      preLoaderRoute: typeof AuthenticatedK7m2qDeskX8v41IndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/admin/settings': {
-      id: '/_authenticated/admin/settings'
-      path: '/admin/settings'
-      fullPath: '/admin/settings'
-      preLoaderRoute: typeof AuthenticatedAdminSettingsRouteImport
+    '/_authenticated/k7m2q-desk-x8v41/settings': {
+      id: '/_authenticated/k7m2q-desk-x8v41/settings'
+      path: '/k7m2q-desk-x8v41/settings'
+      fullPath: '/k7m2q-desk-x8v41/settings'
+      preLoaderRoute: typeof AuthenticatedK7m2qDeskX8v41SettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/admin/projects/$id': {
-      id: '/_authenticated/admin/projects/$id'
-      path: '/admin/projects/$id'
-      fullPath: '/admin/projects/$id'
-      preLoaderRoute: typeof AuthenticatedAdminProjectsIdRouteImport
+    '/_authenticated/k7m2q-desk-x8v41/projects/$id': {
+      id: '/_authenticated/k7m2q-desk-x8v41/projects/$id'
+      path: '/k7m2q-desk-x8v41/projects/$id'
+      fullPath: '/k7m2q-desk-x8v41/projects/$id'
+      preLoaderRoute: typeof AuthenticatedK7m2qDeskX8v41ProjectsIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/admin/research/$id': {
-      id: '/_authenticated/admin/research/$id'
-      path: '/admin/research/$id'
-      fullPath: '/admin/research/$id'
-      preLoaderRoute: typeof AuthenticatedAdminResearchIdRouteImport
+    '/_authenticated/k7m2q-desk-x8v41/research/$id': {
+      id: '/_authenticated/k7m2q-desk-x8v41/research/$id'
+      path: '/k7m2q-desk-x8v41/research/$id'
+      fullPath: '/k7m2q-desk-x8v41/research/$id'
+      preLoaderRoute: typeof AuthenticatedK7m2qDeskX8v41ResearchIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/api/public/files/$': {
@@ -310,17 +311,20 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
-  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
-  AuthenticatedAdminProjectsIdRoute: typeof AuthenticatedAdminProjectsIdRoute
-  AuthenticatedAdminResearchIdRoute: typeof AuthenticatedAdminResearchIdRoute
+  AuthenticatedK7m2qDeskX8v41SettingsRoute: typeof AuthenticatedK7m2qDeskX8v41SettingsRoute
+  AuthenticatedK7m2qDeskX8v41IndexRoute: typeof AuthenticatedK7m2qDeskX8v41IndexRoute
+  AuthenticatedK7m2qDeskX8v41ProjectsIdRoute: typeof AuthenticatedK7m2qDeskX8v41ProjectsIdRoute
+  AuthenticatedK7m2qDeskX8v41ResearchIdRoute: typeof AuthenticatedK7m2qDeskX8v41ResearchIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
-  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
-  AuthenticatedAdminProjectsIdRoute: AuthenticatedAdminProjectsIdRoute,
-  AuthenticatedAdminResearchIdRoute: AuthenticatedAdminResearchIdRoute,
+  AuthenticatedK7m2qDeskX8v41SettingsRoute:
+    AuthenticatedK7m2qDeskX8v41SettingsRoute,
+  AuthenticatedK7m2qDeskX8v41IndexRoute: AuthenticatedK7m2qDeskX8v41IndexRoute,
+  AuthenticatedK7m2qDeskX8v41ProjectsIdRoute:
+    AuthenticatedK7m2qDeskX8v41ProjectsIdRoute,
+  AuthenticatedK7m2qDeskX8v41ResearchIdRoute:
+    AuthenticatedK7m2qDeskX8v41ResearchIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
