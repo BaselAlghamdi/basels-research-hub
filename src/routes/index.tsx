@@ -85,23 +85,12 @@ function HomePage() {
               "Equity research & company analysis",
               "Valuation and financial modeling",
               "Industry and macro commentary",
-              "University finance projects",
             ].map((item) => (
               <li key={item} className="py-2.5 text-sm text-muted-foreground">
                 {item}
               </li>
             ))}
           </ul>
-          <dl className="mt-6 grid grid-cols-2 gap-4">
-            <div>
-              <dt className="label-eyebrow">Research</dt>
-              <dd className="num mt-1 font-serif text-2xl">{research.length}</dd>
-            </div>
-            <div>
-              <dt className="label-eyebrow">Projects</dt>
-              <dd className="num mt-1 font-serif text-2xl">{projects.length}</dd>
-            </div>
-          </dl>
         </aside>
       </section>
 
