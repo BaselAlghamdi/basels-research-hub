@@ -30,6 +30,9 @@ export function Footer() {
               <Link to="/about" className="text-muted-foreground hover:text-foreground">
                 About
               </Link>
+              <Link to="/admin" className="text-muted-foreground/50 hover:text-foreground">
+                Admin
+              </Link>
             </div>
             <div className="flex gap-6">
               {profile.linkedin ? (
