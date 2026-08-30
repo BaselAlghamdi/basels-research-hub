@@ -19,7 +19,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-2 text-sm md:items-end">
+          <div className="flex flex-col gap-4 text-sm md:items-end">
             <div className="flex gap-6">
               <Link to="/research" className="text-muted-foreground hover:text-foreground">
                 Research
@@ -30,31 +30,27 @@ export function Footer() {
               <Link to="/about" className="text-muted-foreground hover:text-foreground">
                 About
               </Link>
-              <Link to="/k7m2q-desk-x8v41" className="text-muted-foreground/50 hover:text-foreground">
-                Admin
-              </Link>
             </div>
-            <div className="flex gap-6">
-              {profile.linkedin ? (
-                <a
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  LinkedIn
-                </a>
-              ) : null}
-              {profile.email ? (
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Email
-                </a>
-              ) : null}
+            <div className="flex gap-3">
+              <a
+                href={profile.linkedin || "https://www.linkedin.com/in/imbasel"}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="flex size-9 items-center justify-center border border-rule text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+              >
+                <Linkedin className="size-4" strokeWidth={1.75} />
+              </a>
+              <a
+                href={`mailto:${profile.email || "baselmsalghamdi@gmail.com"}`}
+                aria-label="Email"
+                className="flex size-9 items-center justify-center border border-rule text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+              >
+                <Mail className="size-4" strokeWidth={1.75} />
+              </a>
             </div>
           </div>
+
         </div>
 
         <p className="mt-10 border-t border-border pt-6 text-xs leading-relaxed text-muted-foreground">
