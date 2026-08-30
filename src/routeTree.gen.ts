@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResumeRouteImport } from './routes/resume'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects/$slug'
 import { Route as ResearchIndexRouteImport } from './routes/research/index'
@@ -46,6 +47,11 @@ const AuthRoute = AuthRouteImport.update({
 const ResumeRoute = ResumeRouteImport.update({
   id: '/resume',
   path: '/resume',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/resume': typeof ResumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/research/$slug': typeof ResearchSlugRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/resume': typeof ResumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/research/$slug': typeof ResearchSlugRoute
   '/projects': typeof ProjectsIndexRoute
@@ -135,6 +143,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/resume': typeof ResumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/research/$slug': typeof ResearchSlugRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -152,6 +161,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/resume'
+    | '/sitemap.xml'
     | '/projects/$slug'
     | '/research/$slug'
     | '/projects/'
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/resume'
+    | '/sitemap.xml'
     | '/projects/$slug'
     | '/research/$slug'
     | '/projects'
@@ -183,6 +194,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/resume'
+    | '/sitemap.xml'
     | '/projects/$slug'
     | '/research/$slug'
     | '/projects/'
@@ -200,6 +212,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   ResumeRoute: typeof ResumeRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
   ResearchSlugRoute: typeof ResearchSlugRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
@@ -242,6 +255,13 @@ declare module '@tanstack/react-router' {
       path: '/resume'
       fullPath: '/resume'
       preLoaderRoute: typeof ResumeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/': {
@@ -336,6 +356,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   ResumeRoute: ResumeRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
   ResearchSlugRoute: ResearchSlugRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
