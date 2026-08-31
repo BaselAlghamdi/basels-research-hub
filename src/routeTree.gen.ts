@@ -15,6 +15,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as V9p3xGate7qz2RouteImport } from './routes/v9p3x-gate-7qz2'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects/$slug'
 import { Route as ResearchIndexRouteImport } from './routes/research/index'
@@ -52,6 +53,11 @@ const ResumeRoute = ResumeRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9p3xGate7qz2Route = V9p3xGate7qz2RouteImport.update({
+  id: '/v9p3x-gate-7qz2',
+  path: '/v9p3x-gate-7qz2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/v9p3x-gate-7qz2': typeof V9p3xGate7qz2Route
   '/projects/$slug': typeof ProjectsSlugRoute
   '/research/$slug': typeof ResearchSlugRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -126,6 +133,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/v9p3x-gate-7qz2': typeof V9p3xGate7qz2Route
   '/projects/$slug': typeof ProjectsSlugRoute
   '/research/$slug': typeof ResearchSlugRoute
   '/projects': typeof ProjectsIndexRoute
@@ -144,6 +152,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/v9p3x-gate-7qz2': typeof V9p3xGate7qz2Route
   '/projects/$slug': typeof ProjectsSlugRoute
   '/research/$slug': typeof ResearchSlugRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -162,6 +171,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/resume'
     | '/sitemap.xml'
+    | '/v9p3x-gate-7qz2'
     | '/projects/$slug'
     | '/research/$slug'
     | '/projects/'
@@ -178,6 +188,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/resume'
     | '/sitemap.xml'
+    | '/v9p3x-gate-7qz2'
     | '/projects/$slug'
     | '/research/$slug'
     | '/projects'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/resume'
     | '/sitemap.xml'
+    | '/v9p3x-gate-7qz2'
     | '/projects/$slug'
     | '/research/$slug'
     | '/projects/'
@@ -213,6 +225,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ResumeRoute: typeof ResumeRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  V9p3xGate7qz2Route: typeof V9p3xGate7qz2Route
   ProjectsSlugRoute: typeof ProjectsSlugRoute
   ResearchSlugRoute: typeof ResearchSlugRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
@@ -262,6 +275,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9p3x-gate-7qz2': {
+      id: '/v9p3x-gate-7qz2'
+      path: '/v9p3x-gate-7qz2'
+      fullPath: '/v9p3x-gate-7qz2'
+      preLoaderRoute: typeof V9p3xGate7qz2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/': {
@@ -357,6 +377,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ResumeRoute: ResumeRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  V9p3xGate7qz2Route: V9p3xGate7qz2Route,
   ProjectsSlugRoute: ProjectsSlugRoute,
   ResearchSlugRoute: ResearchSlugRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
