@@ -14,6 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
+      certifications: {
+        Row: {
+          certificate_image_path: string | null
+          certificate_pdf_path: string | null
+          created_at: string
+          credential_id: string | null
+          credential_url: string | null
+          description: string
+          display_order: number
+          does_not_expire: boolean
+          expiration_date: string | null
+          featured: boolean
+          id: string
+          issue_date: string | null
+          issuer: string
+          issuer_logo_path: string | null
+          name: string
+          published: boolean
+          skills: string[]
+          updated_at: string
+        }
+        Insert: {
+          certificate_image_path?: string | null
+          certificate_pdf_path?: string | null
+          created_at?: string
+          credential_id?: string | null
+          credential_url?: string | null
+          description?: string
+          display_order?: number
+          does_not_expire?: boolean
+          expiration_date?: string | null
+          featured?: boolean
+          id?: string
+          issue_date?: string | null
+          issuer: string
+          issuer_logo_path?: string | null
+          name: string
+          published?: boolean
+          skills?: string[]
+          updated_at?: string
+        }
+        Update: {
+          certificate_image_path?: string | null
+          certificate_pdf_path?: string | null
+          created_at?: string
+          credential_id?: string | null
+          credential_url?: string | null
+          description?: string
+          display_order?: number
+          does_not_expire?: boolean
+          expiration_date?: string | null
+          featured?: boolean
+          id?: string
+          issue_date?: string | null
+          issuer?: string
+          issuer_logo_path?: string | null
+          name?: string
+          published?: boolean
+          skills?: string[]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       projects: {
         Row: {
           category: string
