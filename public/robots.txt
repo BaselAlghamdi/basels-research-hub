@@ -12,3 +12,8 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /k7m2q-desk-x8v41
+Disallow: /auth
+
+Sitemap: https://basels-research-hub.lovable.app/sitemap.xml
+
