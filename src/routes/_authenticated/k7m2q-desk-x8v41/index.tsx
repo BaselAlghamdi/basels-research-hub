@@ -1,13 +1,21 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 
-import { adminProjectsQuery, adminResearchQuery, isAdminQuery } from "@/lib/admin";
+import {
+  adminCertificationsQuery,
+  adminProjectsQuery,
+  adminResearchQuery,
+  isAdminQuery,
+} from "@/lib/admin";
 import { formatDate } from "@/lib/content";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/k7m2q-desk-x8v41/")({
   head: () => ({
-    meta: [{ title: "Admin — Basel M. Alghamdi" }, { name: "robots", content: "noindex" }],
+    meta: [
+      { title: "Admin — Basel M. Alghamdi" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: AdminDashboard,
 });
@@ -18,14 +26,20 @@ function AdminDashboard() {
   const { data: isAdmin, isLoading } = useQuery(isAdminQuery);
   const research = useQuery({ ...adminResearchQuery, enabled: !!isAdmin });
   const projects = useQuery({ ...adminProjectsQuery, enabled: !!isAdmin });
+  const certifications = useQuery({ ...adminCertificationsQuery, enabled: !!isAdmin });
 
   async function signOut() {
-    await supabase.auth.signOut();
+    await queryClient.cancelQueries();
     queryClient.clear();
-    navigate({ to: "/" });
+    await supabase.auth.signOut();
+    navigate({ to: "/", replace: true });
   }
 
-  async function remove(table: "research" | "projects", id: string, title: string) {
+  async function remove(
+    table: "research" | "projects" | "certifications",
+    id: string,
+    title: string,
+  ) {
     if (!window.confirm(`Delete "${title}"? This cannot be undone.`)) return;
     const { error } = await supabase.from(table).delete().eq("id", id);
     if (error) {
@@ -34,6 +48,7 @@ function AdminDashboard() {
     }
     queryClient.invalidateQueries();
   }
+
 
   if (isLoading) {
     return <p className="mx-auto max-w-6xl px-5 py-16 text-sm text-muted-foreground">Loading…</p>;
@@ -174,6 +189,53 @@ function AdminDashboard() {
           ) : null}
         </ul>
       </section>
+
+      <section className="mt-12">
+        <div className="flex items-end justify-between border-b border-foreground pb-2">
+          <h2 className="label-eyebrow text-foreground">Certifications</h2>
+          <Link
+            to="/k7m2q-desk-x8v41/certifications/$id"
+            params={{ id: "new" }}
+            className="bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-accent"
+          >
+            New certification
+          </Link>
+        </div>
+        <ul className="mt-2 divide-y divide-border">
+          {(certifications.data ?? []).map((item) => (
+            <li key={item.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
+              <div className="min-w-0">
+                <p className="truncate text-sm font-medium">{item.name}</p>
+                <p className="num text-xs text-muted-foreground">
+                  {item.issuer}
+                  {item.issue_date ? ` · ${formatDate(item.issue_date)}` : ""}
+                  {` · order ${item.display_order}`}
+                  {item.published ? "" : " · Draft"}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Link
+                  to="/k7m2q-desk-x8v41/certifications/$id"
+                  params={{ id: item.id }}
+                  className="border border-input px-2.5 py-1 text-xs"
+                >
+                  Edit
+                </Link>
+                <button
+                  onClick={() => remove("certifications", item.id, item.name)}
+                  className="border border-input px-2.5 py-1 text-xs text-destructive"
+                >
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
+          {certifications.data && !certifications.data.length ? (
+            <li className="py-4 text-sm text-muted-foreground">No certifications yet.</li>
+          ) : null}
+        </ul>
+      </section>
     </div>
   );
 }
+
