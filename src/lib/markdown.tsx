@@ -24,11 +24,12 @@ function parseInline(text: string, keyPrefix: string): ReactNode[] {
 
     if (token.startsWith("![")) {
       const m = /^!\[([^\]]*)\]\(([^)]+)\)$/.exec(token);
-      if (m)
+      const src = safeSrc(m?.[2]);
+      if (m && src)
         nodes.push(
           <img
             key={key}
-            src={m[2] ?? ""}
+            src={src}
             alt={m[1] ?? ""}
             loading="lazy"
             className="my-2 w-full border border-border"
@@ -37,17 +38,25 @@ function parseInline(text: string, keyPrefix: string): ReactNode[] {
     } else if (token.startsWith("[")) {
       const m = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(token);
       if (m) {
-        const external = /^https?:\/\//.test(m[2] ?? "");
+        const href = safeHref(m[2]);
+        const external = /^https?:\/\//i.test(href);
         nodes.push(
-          <a
-            key={key}
-            href={m[2] ?? "#"}
-            {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          >
-            {m[1] ?? ""}
-          </a>,
+          href === "#" ? (
+            <span key={key}>{m[1] ?? ""}</span>
+          ) : (
+            <a
+              key={key}
+              href={href}
+              {...(external
+                ? { target: "_blank", rel: "noopener noreferrer nofollow ugc" }
+                : {})}
+            >
+              {m[1] ?? ""}
+            </a>,
+          ),
         );
       }
+
     } else if (token.startsWith("**")) {
       nodes.push(<strong key={key}>{token.slice(2, -2)}</strong>);
     } else if (token.startsWith("`")) {
