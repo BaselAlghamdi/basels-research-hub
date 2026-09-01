@@ -1,13 +1,21 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 
-import { adminProjectsQuery, adminResearchQuery, isAdminQuery } from "@/lib/admin";
+import {
+  adminCertificationsQuery,
+  adminProjectsQuery,
+  adminResearchQuery,
+  isAdminQuery,
+} from "@/lib/admin";
 import { formatDate } from "@/lib/content";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/k7m2q-desk-x8v41/")({
   head: () => ({
-    meta: [{ title: "Admin — Basel M. Alghamdi" }, { name: "robots", content: "noindex" }],
+    meta: [
+      { title: "Admin — Basel M. Alghamdi" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: AdminDashboard,
 });
@@ -18,14 +26,20 @@ function AdminDashboard() {
   const { data: isAdmin, isLoading } = useQuery(isAdminQuery);
   const research = useQuery({ ...adminResearchQuery, enabled: !!isAdmin });
   const projects = useQuery({ ...adminProjectsQuery, enabled: !!isAdmin });
+  const certifications = useQuery({ ...adminCertificationsQuery, enabled: !!isAdmin });
 
   async function signOut() {
-    await supabase.auth.signOut();
+    await queryClient.cancelQueries();
     queryClient.clear();
-    navigate({ to: "/" });
+    await supabase.auth.signOut();
+    navigate({ to: "/", replace: true });
   }
 
-  async function remove(table: "research" | "projects", id: string, title: string) {
+  async function remove(
+    table: "research" | "projects" | "certifications",
+    id: string,
+    title: string,
+  ) {
     if (!window.confirm(`Delete "${title}"? This cannot be undone.`)) return;
     const { error } = await supabase.from(table).delete().eq("id", id);
     if (error) {
@@ -34,6 +48,7 @@ function AdminDashboard() {
     }
     queryClient.invalidateQueries();
   }
+
 
   if (isLoading) {
     return <p className="mx-auto max-w-6xl px-5 py-16 text-sm text-muted-foreground">Loading…</p>;
