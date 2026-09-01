@@ -52,7 +52,7 @@ function parseInline(text: string, keyPrefix: string): ReactNode[] {
                 : {})}
             >
               {m[1] ?? ""}
-            </a>,
+            </a>
           ),
         );
       }
