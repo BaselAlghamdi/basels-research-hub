@@ -96,21 +96,9 @@ function AboutPage() {
       </Block>
 
       <Block title="Certifications">
-        {about.certifications.length ? (
-          <ul className="divide-y divide-border">
-            {about.certifications.map((entry, index) => (
-              <li key={index} className="py-3">
-                <p className="text-sm font-medium">{entry.name}</p>
-                {entry.detail ? (
-                  <p className="text-xs text-muted-foreground">{entry.detail}</p>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-sm text-muted-foreground">To be added.</p>
-        )}
+        <CertificationsGrid />
       </Block>
+
 
       <Block title="Skills">
         {about.skills.length ? (
