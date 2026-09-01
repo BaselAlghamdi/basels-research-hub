@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_authenticated/k7m2q-desk-x8v41/certifica
   head: () => ({
     meta: [{ title: "Edit certification — Admin" }, { name: "robots", content: "noindex, nofollow" }],
   }),
-  component: CertificationEditor;
+  component: CertificationEditor,
 });
 
 type Draft = {
