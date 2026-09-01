@@ -9,6 +9,23 @@ import type { ReactNode } from "react";
 
 type Inline = { text: string };
 
+/** Blocks javascript:, data: and other active URL schemes in authored content. */
+function safeHref(value: string | undefined): string {
+  const raw = (value ?? "").trim();
+  if (!raw) return "#";
+  if (/^(https?:|mailto:|tel:)/i.test(raw)) return raw;
+  if (/^[/#]/.test(raw)) return raw;
+  return "#";
+}
+
+function safeSrc(value: string | undefined): string | null {
+  const raw = (value ?? "").trim();
+  if (!raw) return null;
+  if (/^https?:\/\//i.test(raw) || raw.startsWith("/")) return raw;
+  return null;
+}
+
+
 function parseInline(text: string, keyPrefix: string): ReactNode[] {
   const nodes: ReactNode[] = [];
   const pattern =
