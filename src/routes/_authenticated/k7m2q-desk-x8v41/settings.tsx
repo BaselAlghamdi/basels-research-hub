@@ -14,7 +14,7 @@ import {
 
 export const Route = createFileRoute("/_authenticated/k7m2q-desk-x8v41/settings")({
   head: () => ({
-    meta: [{ title: "Site settings — Admin" }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "Site settings — Admin" }, { name: "robots", content: "noindex, nofollow" }],
   }),
   component: SettingsEditor,
 });

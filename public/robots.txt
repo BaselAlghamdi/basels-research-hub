@@ -12,7 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
-Disallow: /k7m2q-desk-x8v41
-Disallow: /v9p3x-gate-7qz2
 
-Sitemap: https://basels-research-hub.lovable.app/sitemap.xml
+Sitemap: https://www.baselalghamdi.me/sitemap.xml

@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin } from "lucide-react";
+
+import { CONTACT_EMAIL, EmailButton } from "@/components/site/EmailButton";
 
 import { DEFAULT_PROFILE, settingsQuery } from "@/lib/content";
 
@@ -42,15 +44,10 @@ export function Footer() {
               >
                 <Linkedin className="size-4" strokeWidth={1.75} />
               </a>
-              <a
-                href={`mailto:${profile.email || "baselmsalghamdi@gmail.com"}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Email"
+              <EmailButton
+                email={profile.email || CONTACT_EMAIL}
                 className="flex size-9 items-center justify-center border border-rule text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
-              >
-                <Mail className="size-4" strokeWidth={1.75} />
-              </a>
+              />
             </div>
           </div>
 
