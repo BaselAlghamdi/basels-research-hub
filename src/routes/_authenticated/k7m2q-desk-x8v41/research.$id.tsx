@@ -10,7 +10,7 @@ import { estimateReadingTime } from "@/lib/markdown";
 
 export const Route = createFileRoute("/_authenticated/k7m2q-desk-x8v41/research/$id")({
   head: () => ({
-    meta: [{ title: "Edit research — Admin" }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "Edit research — Admin" }, { name: "robots", content: "noindex, nofollow" }],
   }),
   component: ResearchEditor,
 });

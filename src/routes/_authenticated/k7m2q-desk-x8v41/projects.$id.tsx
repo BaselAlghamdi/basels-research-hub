@@ -9,7 +9,7 @@ import { PROJECT_CATEGORIES } from "@/lib/content";
 
 export const Route = createFileRoute("/_authenticated/k7m2q-desk-x8v41/projects/$id")({
   head: () => ({
-    meta: [{ title: "Edit project — Admin" }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "Edit project — Admin" }, { name: "robots", content: "noindex, nofollow" }],
   }),
   component: ProjectEditor,
 });
