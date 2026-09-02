@@ -1,19 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Mail, Menu, X } from "lucide-react";
+import { Linkedin, Menu, X } from "lucide-react";
 import { useState } from "react";
+
+import { EmailButton } from "@/components/site/EmailButton";
 
 const SOCIALS = [
   {
     href: "https://www.linkedin.com/in/imbasel",
     label: "LinkedIn",
     Icon: Linkedin,
-    external: true,
-  },
-  {
-    href: "mailto:baselmsalghamdi@gmail.com",
-    label: "Email",
-    Icon: Mail,
-    external: false,
   },
 ] as const;
 
@@ -67,6 +62,7 @@ export function Header() {
               <Icon className="size-4" strokeWidth={1.75} />
             </a>
           ))}
+          <EmailButton className={"flex size-8 items-center justify-center border border-input text-muted-foreground transition-colors hover:border-accent hover:text-accent"} />
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
