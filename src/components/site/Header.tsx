@@ -55,12 +55,13 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-1.5 md:gap-2">
-          {SOCIALS.map(({ href, label, Icon, external }) => (
+          {SOCIALS.map(({ href, label, Icon }) => (
             <a
               key={label}
               href={href}
               aria-label={label}
-              {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex size-8 items-center justify-center border border-input text-muted-foreground transition-colors hover:border-accent hover:text-accent"
             >
               <Icon className="size-4" strokeWidth={1.75} />
