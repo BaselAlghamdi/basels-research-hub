@@ -25,18 +25,35 @@ function AuthPage() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [attempts, setAttempts] = useState(0);
+  const [lockedUntil, setLockedUntil] = useState(0);
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
+    if (Date.now() < lockedUntil) {
+      const seconds = Math.ceil((lockedUntil - Date.now()) / 1000);
+      setMessage(`Too many attempts. Try again in ${seconds}s.`);
+      return;
+    }
     setBusy(true);
     setMessage(null);
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setBusy(false);
     if (error) {
       // Generic message: never reveal whether an account exists.
+      const next = attempts + 1;
+      setAttempts(next);
+      if (next >= 5) {
+        // Client-side backoff on top of the server-side auth rate limit.
+        setLockedUntil(Date.now() + 60_000);
+        setAttempts(0);
+        setMessage("Too many attempts. Try again in 60s.");
+        return;
+      }
       setMessage("Invalid credentials.");
       return;
     }
+    setAttempts(0);
     navigate({ to: "/k7m2q-desk-x8v41" });
   }
 
