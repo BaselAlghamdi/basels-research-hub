@@ -44,6 +44,8 @@ export function Footer() {
               </a>
               <a
                 href={`mailto:${profile.email || "baselmsalghamdi@gmail.com"}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Email"
                 className="flex size-9 items-center justify-center border border-rule text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
               >

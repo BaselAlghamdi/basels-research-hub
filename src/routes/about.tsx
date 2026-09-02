@@ -1,8 +1,10 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
+import { CertificationsGrid } from "@/components/site/Certifications";
 import { PageHeader } from "@/components/site/primitives";
 import { settingsQuery } from "@/lib/content";
+import { certificationsQuery } from "@/lib/certifications";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -23,7 +25,12 @@ export const Route = createFileRoute("/about")({
     ],
     links: [{ rel: "canonical", href: "/about" }],
   }),
-  loader: ({ context }) => context.queryClient.ensureQueryData(settingsQuery),
+  loader: async ({ context }) => {
+    await Promise.all([
+      context.queryClient.ensureQueryData(settingsQuery),
+      context.queryClient.ensureQueryData(certificationsQuery),
+    ]);
+  },
   component: AboutPage,
 });
 
