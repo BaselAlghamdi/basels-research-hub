@@ -14,11 +14,15 @@ export const Route = createFileRoute("/_authenticated")({
     const { data, error } = await supabase.auth.getUser();
     if (error || !data.user) throw redirect({ to: "/v9p3x-gate-7qz2" });
 
-    const { data: isAdmin } = await supabase.rpc("has_role", {
-      _user_id: data.user.id,
-      _role: "admin",
-    });
-    if (!isAdmin) throw redirect({ to: "/" });
+    // Role is read from the database (own row only, enforced by RLS) —
+    // never from client state. RLS re-checks it on every read and write.
+    const { data: adminRow } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", data.user.id)
+      .eq("role", "admin")
+      .maybeSingle();
+    if (!adminRow) throw redirect({ to: "/" });
 
     return { user: data.user };
   },
