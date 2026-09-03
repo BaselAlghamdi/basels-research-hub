@@ -123,10 +123,13 @@ export const isAdminQuery = queryOptions({
     const { data: userData } = await supabase.auth.getUser();
     const user = userData.user;
     if (!user) return false;
-    const { data, error } = await supabase.rpc("has_role", {
-      _user_id: user.id,
-      _role: "admin",
-    });
+    // Row Level Security only ever exposes the caller's own role rows.
+    const { data, error } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", user.id)
+      .eq("role", "admin")
+      .maybeSingle();
     if (error) return false;
     return !!data;
   },
