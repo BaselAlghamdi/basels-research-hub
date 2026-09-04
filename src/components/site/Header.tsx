@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Menu, X } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import { useState } from "react";
 
 import { EmailButton } from "@/components/site/EmailButton";
@@ -20,18 +20,32 @@ const NAV = [
   { to: "/resume", label: "Resume" },
 ] as const;
 
+const iconButton =
+  "flex size-8 items-center justify-center border border-rule text-muted-foreground transition-colors hover:border-accent hover:text-accent";
+
 export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-background/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <Link to="/" className="group flex flex-col leading-none" onClick={() => setOpen(false)}>
-          <span className="font-serif text-[1.0625rem] font-semibold tracking-tight">
+      {/* Utility bar — desktop only */}
+      <div className="hidden border-b border-rule/60 md:block">
+        <div className="mx-auto flex h-8 max-w-6xl items-center justify-between px-5 sm:px-8">
+          <p className="label-eyebrow text-[0.625rem]">
+            Investment Research <span className="px-1.5 text-rule">·</span> Valuation
+            <span className="px-1.5 text-rule">·</span> Financial Modeling
+          </p>
+          <p className="label-eyebrow text-[0.625rem] text-foreground/70">Basel M. Alghamdi</p>
+        </div>
+      </div>
+
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
+        <Link to="/" className="group flex min-w-0 flex-col leading-none" onClick={() => setOpen(false)}>
+          <span className="truncate font-serif text-[1.0625rem] font-semibold tracking-tight">
             Basel M. Alghamdi
           </span>
-          <span className="label-eyebrow mt-1 hidden text-[0.625rem] sm:block">
-            Investment Research &amp; Financial Modeling
+          <span className="label-eyebrow mt-1 text-[0.5625rem]">
+            Finance Student <span className="text-rule">·</span> Investment Research
           </span>
         </Link>
 
@@ -40,8 +54,8 @@ export function Header() {
             <Link
               key={item.to}
               to={item.to}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              activeProps={{ className: "text-foreground font-medium" }}
+              className="label-eyebrow text-[0.6875rem] transition-colors hover:text-accent"
+              activeProps={{ className: "text-accent" }}
               activeOptions={{ exact: item.to === "/" }}
             >
               {item.label}
@@ -49,7 +63,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-1.5 md:gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
           {SOCIALS.map(({ href, label, Icon }) => (
             <a
               key={label}
@@ -57,34 +71,47 @@ export function Header() {
               aria-label={label}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex size-8 items-center justify-center border border-input text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+              className={iconButton}
             >
               <Icon className="size-4" strokeWidth={1.75} />
             </a>
           ))}
-          <EmailButton className={"flex size-8 items-center justify-center border border-input text-muted-foreground transition-colors hover:border-accent hover:text-accent"} />
+          <EmailButton className={iconButton} />
           <button
             type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={open}
-            className="-mr-2 p-2 text-foreground md:hidden"
+            aria-controls="mobile-nav"
+            className="-mr-1 flex size-8 flex-col items-center justify-center gap-[5px] text-foreground md:hidden"
             onClick={() => setOpen((value) => !value)}
           >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            <span
+              className={`block h-px w-5 bg-current transition-transform duration-200 ${open ? "translate-y-[6px] rotate-45" : ""}`}
+            />
+            <span
+              className={`block h-px w-5 bg-current transition-opacity duration-200 ${open ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`block h-px w-5 bg-current transition-transform duration-200 ${open ? "-translate-y-[6px] -rotate-45" : ""}`}
+            />
           </button>
         </div>
       </div>
 
       {open ? (
-        <nav className="border-t border-rule bg-background md:hidden" aria-label="Mobile">
+        <nav
+          id="mobile-nav"
+          className="border-t border-rule bg-surface md:hidden"
+          aria-label="Mobile"
+        >
           <ul className="mx-auto max-w-6xl px-5 py-2 sm:px-8">
             {NAV.map((item) => (
               <li key={item.to} className="border-b border-border last:border-0">
                 <Link
                   to={item.to}
                   onClick={() => setOpen(false)}
-                  className="block py-3 text-sm text-foreground"
-                  activeProps={{ className: "font-semibold" }}
+                  className="label-eyebrow block py-4 text-[0.75rem] text-foreground"
+                  activeProps={{ className: "text-accent" }}
                   activeOptions={{ exact: item.to === "/" }}
                 >
                   {item.label}
