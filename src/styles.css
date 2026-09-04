@@ -5,9 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Institutional research design system.
- * Typography-led, restrained palette: deep navy, off-white, slate, muted blue.
- * All colors are oklch tokens. Never hardcode colors in components.
+ * Financial-research terminal × editorial investment journal.
+ * Deep forest-green ground, bone text, emerald accent.
+ * All colors are tokens. Never hardcode colors in components.
  */
 
 @theme inline {
@@ -56,45 +56,46 @@
 }
 
 :root {
+  color-scheme: dark;
   --radius: 2px;
 
-  --background: oklch(0.988 0.003 250);
-  --foreground: oklch(0.215 0.032 262);
-  --surface: oklch(0.965 0.005 250);
+  --background: #0d1512;
+  --foreground: #f3ebdd;
+  --surface: #121e19;
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.215 0.032 262);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.215 0.032 262);
+  --card: #121e19;
+  --card-foreground: #f3ebdd;
+  --popover: #121e19;
+  --popover-foreground: #f3ebdd;
 
-  --primary: oklch(0.268 0.055 262);
-  --primary-foreground: oklch(0.985 0.003 250);
+  --primary: #4ed98a;
+  --primary-foreground: #06120c;
 
-  --secondary: oklch(0.955 0.006 250);
-  --secondary-foreground: oklch(0.268 0.055 262);
+  --secondary: #172720;
+  --secondary-foreground: #f3ebdd;
 
-  --muted: oklch(0.958 0.005 250);
-  --muted-foreground: oklch(0.508 0.021 258);
+  --muted: #16241e;
+  --muted-foreground: #a8b1a8;
 
-  --accent: oklch(0.452 0.078 250);
-  --accent-foreground: oklch(0.985 0.003 250);
+  --accent: #4ed98a;
+  --accent-foreground: #06120c;
 
-  --destructive: oklch(0.478 0.135 25);
-  --destructive-foreground: oklch(0.985 0.003 250);
+  --destructive: #d96b5a;
+  --destructive-foreground: #0d1512;
 
-  --negative: oklch(0.492 0.125 25);
-  --positive: oklch(0.475 0.055 195);
+  --negative: #d96b5a;
+  --positive: #4ed98a;
 
-  --border: oklch(0.9 0.008 255);
-  --rule: oklch(0.855 0.01 255);
-  --input: oklch(0.885 0.009 255);
-  --ring: oklch(0.452 0.078 250);
+  --border: #263b32;
+  --rule: #33463b;
+  --input: #33463b;
+  --ring: #4ed98a;
 
-  --chart-1: oklch(0.268 0.055 262);
-  --chart-2: oklch(0.452 0.078 250);
-  --chart-3: oklch(0.6 0.045 240);
-  --chart-4: oklch(0.475 0.055 195);
-  --chart-5: oklch(0.62 0.03 258);
+  --chart-1: #4ed98a;
+  --chart-2: #7fbfa0;
+  --chart-3: #a8b1a8;
+  --chart-4: #33463b;
+  --chart-5: #f3ebdd;
 }
 
 @layer base {
@@ -105,6 +106,7 @@
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -121,7 +123,7 @@
   h4 {
     font-family: var(--font-serif);
     font-weight: 600;
-    letter-spacing: -0.011em;
+    letter-spacing: -0.015em;
     color: var(--color-foreground);
   }
 
@@ -130,7 +132,13 @@
   }
 
   ::selection {
-    background: color-mix(in oklab, var(--accent) 20%, transparent);
+    background: color-mix(in oklab, var(--accent) 28%, transparent);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 }
 
@@ -139,7 +147,7 @@
   font-family: var(--font-sans);
   font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-muted-foreground);
 }
@@ -149,18 +157,45 @@
   font-feature-settings: "tnum";
 }
 
+/* Bordered terminal panel */
+@utility panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-rule);
+}
+
+@utility glow-accent {
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 22%, transparent),
+    0 0 32px -12px color-mix(in oklab, var(--accent) 45%, transparent);
+}
+
+@utility rise {
+  animation: rise-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Long-form research typography */
 @utility prose-research {
-  color: var(--color-foreground);
-  font-size: 1.0625rem;
-  line-height: 1.75;
+  color: color-mix(in oklab, var(--foreground) 92%, transparent);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.8;
 
   & > * + * {
-    margin-top: 1.15rem;
+    margin-top: 1.2rem;
   }
 
   & h2 {
-    font-size: 1.5rem;
+    font-size: 1.55rem;
     line-height: 1.3;
     margin-top: 2.75rem;
     padding-bottom: 0.5rem;
@@ -168,12 +203,12 @@
   }
 
   & h3 {
-    font-size: 1.175rem;
+    font-size: 1.2rem;
     margin-top: 2rem;
   }
 
   & h1 {
-    font-size: 1.75rem;
+    font-size: 1.8rem;
     margin-top: 2.5rem;
   }
 
@@ -183,6 +218,7 @@
 
   & strong {
     font-weight: 600;
+    color: var(--color-foreground);
   }
 
   & a {
@@ -210,23 +246,24 @@
   }
 
   & li::marker {
-    color: var(--color-muted-foreground);
+    color: var(--color-accent);
   }
 
   & blockquote {
     border-left: 2px solid var(--color-accent);
     padding: 0.15rem 0 0.15rem 1.15rem;
     font-family: var(--font-serif);
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     line-height: 1.55;
-    color: color-mix(in oklab, var(--foreground) 88%, transparent);
+    color: color-mix(in oklab, var(--foreground) 85%, transparent);
   }
 
   & code {
     font-family: var(--font-mono);
-    font-size: 0.875em;
-    background: var(--color-surface);
-    padding: 0.1em 0.3em;
+    font-size: 0.85em;
+    background: var(--color-secondary);
+    border: 1px solid var(--color-border);
+    padding: 0.1em 0.35em;
   }
 
   & hr {
@@ -235,10 +272,18 @@
     margin-top: 2.25rem;
   }
 
+  & figure,
+  & img {
+    max-width: 100%;
+  }
+
   & table {
     width: 100%;
     border-collapse: collapse;
+    font-family: var(--font-sans);
     font-size: 0.9375rem;
+    display: block;
+    overflow-x: auto;
   }
 
   & thead th {
@@ -249,7 +294,7 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-muted-foreground);
-    border-bottom: 1px solid var(--color-foreground);
+    border-bottom: 1px solid var(--color-accent);
     padding: 0.5rem 0.75rem;
     white-space: nowrap;
   }
