@@ -8,13 +8,13 @@ import { PROJECT_CATEGORIES, projectsListQuery } from "@/lib/content";
 export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
-      { title: "Project Book — Basel M. Alghamdi" },
+      { title: "Project Book — Basel Alghamdi" },
       {
         name: "description",
         content:
-          "Financial modeling, valuation, equity research, and academic finance projects by Basel M. Alghamdi.",
+          "Financial modeling, valuation, equity research, and academic finance projects by Basel Alghamdi.",
       },
-      { property: "og:title", content: "Project Book — Basel M. Alghamdi" },
+      { property: "og:title", content: "Project Book — Basel Alghamdi" },
       {
         property: "og:description",
         content: "Financial modeling, valuation, equity research, and academic finance projects.",

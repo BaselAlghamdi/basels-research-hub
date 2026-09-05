@@ -20,7 +20,7 @@ export const Route = createFileRoute("/projects/$slug")({
     const description = (item.summary || item.title).slice(0, 158);
     return {
       meta: [
-        { title: `${item.title} — Basel M. Alghamdi` },
+        { title: `${item.title} — Basel Alghamdi` },
         { name: "description", content: description },
         { property: "og:title", content: item.title },
         { property: "og:description", content: description },

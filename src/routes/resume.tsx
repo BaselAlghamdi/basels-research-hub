@@ -7,12 +7,12 @@ import { fileUrl, settingsQuery } from "@/lib/content";
 export const Route = createFileRoute("/resume")({
   head: () => ({
     meta: [
-      { title: "Resume — Basel M. Alghamdi" },
+      { title: "Resume — Basel Alghamdi" },
       {
         name: "description",
-        content: "View or download the current resume of Basel M. Alghamdi, finance student at KAU.",
+        content: "View or download the current resume of Basel Alghamdi, finance student at KAU.",
       },
-      { property: "og:title", content: "Resume — Basel M. Alghamdi" },
+      { property: "og:title", content: "Resume — Basel Alghamdi" },
       { property: "og:description", content: "View or download the current resume." },
       { property: "og:url", content: "/resume" },
       { property: "og:type", content: "profile" },

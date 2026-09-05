@@ -44,7 +44,7 @@ export const PROJECT_CATEGORIES = [
 ] as const;
 
 export const DEFAULT_PROFILE: ProfileSettings = {
-  name: "Basel M. Alghamdi",
+  name: "Basel Alghamdi",
   role: "Finance Student @ King Abdulaziz University",
   email: "",
   linkedin: "https://www.linkedin.com/in/imbasel/",

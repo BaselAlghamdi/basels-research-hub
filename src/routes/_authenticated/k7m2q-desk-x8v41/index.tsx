@@ -13,7 +13,7 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/_authenticated/k7m2q-desk-x8v41/")({
   head: () => ({
     meta: [
-      { title: "Admin — Basel M. Alghamdi" },
+      { title: "Admin — Basel Alghamdi" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
