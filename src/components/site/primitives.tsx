@@ -15,10 +15,10 @@ export function PageHeader({
 }) {
   return (
     <header className="border-b border-rule pb-8">
-      {eyebrow ? <p className="label-eyebrow">{eyebrow}</p> : null}
-      <h1 className="mt-3 text-3xl leading-tight sm:text-4xl">{title}</h1>
+      {eyebrow ? <p className="label-eyebrow text-accent">{eyebrow}</p> : null}
+      <h1 className="mt-3 text-[2.25rem] leading-[1.1] sm:text-5xl">{title}</h1>
       {subtitle ? (
-        <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">{subtitle}</p>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">{subtitle}</p>
       ) : null}
     </header>
   );
@@ -26,8 +26,11 @@ export function PageHeader({
 
 export function SectionTitle({ title, action }: { title: string; action?: ReactNode }) {
   return (
-    <div className="flex items-end justify-between gap-4 border-b border-foreground pb-2">
-      <h2 className="label-eyebrow text-foreground">{title}</h2>
+    <div className="flex items-end justify-between gap-4 border-b border-rule pb-2">
+      <h2 className="label-eyebrow flex items-center gap-2 text-foreground">
+        <span className="size-1 bg-accent" aria-hidden="true" />
+        {title}
+      </h2>
       {action}
     </div>
   );
@@ -139,7 +142,7 @@ export function ProjectRow({
 }) {
   const cover = fileUrl(image);
   return (
-    <article className="flex h-full flex-col border border-border bg-card p-6">
+    <article className="flex h-full flex-col border border-rule bg-card p-6 transition-colors hover:border-accent">
       {cover ? (
         <img
           src={cover}
@@ -205,7 +208,7 @@ export function MaterialsPanel({
   if (!pdf && !excel && !externalUrl) return null;
 
   return (
-    <section className="mt-12 border border-rule bg-surface p-6">
+    <section className="mt-8 border border-rule bg-surface p-6">
       <h2 className="label-eyebrow text-foreground">{title}</h2>
       <ul className="mt-4 divide-y divide-border">
         {pdf ? (

@@ -1,5 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 
 import { PageHeader, ProjectRow } from "@/components/site/primitives";
 import { PROJECT_CATEGORIES, projectsListQuery } from "@/lib/content";
@@ -7,13 +8,13 @@ import { PROJECT_CATEGORIES, projectsListQuery } from "@/lib/content";
 export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
-      { title: "Projects — Basel M. Alghamdi" },
+      { title: "Project Book — Basel M. Alghamdi" },
       {
         name: "description",
         content:
           "Financial modeling, valuation, equity research, and academic finance projects by Basel M. Alghamdi.",
       },
-      { property: "og:title", content: "Projects — Basel M. Alghamdi" },
+      { property: "og:title", content: "Project Book — Basel M. Alghamdi" },
       {
         property: "og:description",
         content: "Financial modeling, valuation, equity research, and academic finance projects.",
@@ -29,28 +30,52 @@ export const Route = createFileRoute("/projects/")({
 
 function ProjectsIndex() {
   const { data: projects } = useSuspenseQuery(projectsListQuery);
+  const [active, setActive] = useState<string>("All");
 
-  const groups = PROJECT_CATEGORIES.map((category) => ({
-    category,
-    items: projects.filter((project) => project.category === category),
-  })).filter((group) => group.items.length);
+  const available = [
+    "All",
+    ...PROJECT_CATEGORIES.filter((category) => projects.some((p) => p.category === category)),
+  ];
+
+  const filtered = useMemo(
+    () => (active === "All" ? projects : projects.filter((p) => p.category === active)),
+    [projects, active],
+  );
 
   return (
     <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
       <PageHeader
         eyebrow="Work"
-        title="Projects"
+        title="Project Book"
         subtitle="Financial models, valuation work, equity research reports, and selected university projects."
       />
 
-      {groups.length ? (
-        groups.map((group) => (
-          <section key={group.category} className="mt-12">
-            <h2 className="label-eyebrow border-b border-foreground pb-2 text-foreground">
-              {group.category}
-            </h2>
-            <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {group.items.map((project) => (
+      {projects.length ? (
+        <>
+          <nav className="mt-8 -mx-1 overflow-x-auto" aria-label="Project categories">
+            <ul className="flex min-w-max gap-1 px-1 py-1">
+              {available.map((category) => (
+                <li key={category}>
+                  <button
+                    type="button"
+                    onClick={() => setActive(category)}
+                    aria-pressed={active === category}
+                    className={`border px-3 py-2 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] transition-colors ${
+                      active === category
+                        ? "border-accent text-accent"
+                        : "border-rule text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {filtered.length ? (
+            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {filtered.map((project) => (
                 <ProjectRow
                   key={project.id}
                   slug={project.slug}
@@ -63,8 +88,15 @@ function ProjectsIndex() {
                 />
               ))}
             </div>
-          </section>
-        ))
+          ) : (
+            <div className="panel mt-10 p-10 text-center">
+              <p className="label-eyebrow text-foreground">No results</p>
+              <p className="mt-3 text-sm text-muted-foreground">
+                No projects in this category yet.
+              </p>
+            </div>
+          )}
+        </>
       ) : (
         <p className="mt-10 text-sm text-muted-foreground">No projects published yet.</p>
       )}
