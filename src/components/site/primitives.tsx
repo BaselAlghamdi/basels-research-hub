@@ -142,7 +142,7 @@ export function ProjectRow({
 }) {
   const cover = fileUrl(image);
   return (
-    <article className="flex h-full flex-col border border-border bg-card p-6">
+    <article className="flex h-full flex-col border border-rule bg-card p-6 transition-colors hover:border-accent">
       {cover ? (
         <img
           src={cover}
@@ -208,7 +208,7 @@ export function MaterialsPanel({
   if (!pdf && !excel && !externalUrl) return null;
 
   return (
-    <section className="mt-12 border border-rule bg-surface p-6">
+    <section className="mt-8 border border-rule bg-surface p-6">
       <h2 className="label-eyebrow text-foreground">{title}</h2>
       <ul className="mt-4 divide-y divide-border">
         {pdf ? (
