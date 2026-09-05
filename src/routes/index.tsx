@@ -8,15 +8,15 @@ import { projectsListQuery, researchListQuery, settingsQuery } from "@/lib/conte
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Basel M. Alghamdi — Investment Research & Financial Modeling" },
+      { title: "Basel Alghamdi — Investment Research & Financial Modeling" },
       {
         name: "description",
         content:
-          "Independent investment research, equity analysis, valuation work and financial models by Basel M. Alghamdi, finance student at King Abdulaziz University.",
+          "Independent investment research, equity analysis, valuation work and financial models by Basel Alghamdi, finance student at King Abdulaziz University.",
       },
       {
         property: "og:title",
-        content: "Basel M. Alghamdi — Investment Research & Financial Modeling",
+        content: "Basel Alghamdi — Investment Research & Financial Modeling",
       },
       {
         property: "og:description",

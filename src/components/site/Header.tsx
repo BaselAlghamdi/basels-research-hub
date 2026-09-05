@@ -35,14 +35,14 @@ export function Header() {
             Investment Research <span className="px-1.5 text-rule">·</span> Valuation
             <span className="px-1.5 text-rule">·</span> Financial Modeling
           </p>
-          <p className="label-eyebrow text-[0.625rem] text-foreground/70">Basel M. Alghamdi</p>
+          <p className="label-eyebrow text-[0.625rem] text-foreground/70">Basel Alghamdi</p>
         </div>
       </div>
 
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
         <Link to="/" className="group flex min-w-0 flex-col leading-none" onClick={() => setOpen(false)}>
           <span className="truncate font-serif text-[1.0625rem] font-semibold tracking-tight">
-            Basel M. Alghamdi
+            Basel Alghamdi
           </span>
           <span className="label-eyebrow mt-1 text-[0.5625rem]">
             Finance Student <span className="text-rule">·</span> Investment Research

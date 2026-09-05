@@ -74,14 +74,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Basel M. Alghamdi — Investment Research" },
+      { title: "Basel Alghamdi — Investment Research" },
       {
         name: "description",
         content:
-          "Independent investment research, equity analysis, valuation work and financial models by Basel M. Alghamdi.",
+          "Independent investment research, equity analysis, valuation work and financial models by Basel Alghamdi.",
       },
-      { name: "author", content: "Basel M. Alghamdi" },
-      { property: "og:site_name", content: "Basel M. Alghamdi — Investment Research" },
+      { name: "author", content: "Basel Alghamdi" },
+      { property: "og:site_name", content: "Basel Alghamdi — Investment Research" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -101,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Person",
-          name: "Basel M. Alghamdi",
+          name: "Basel Alghamdi",
           jobTitle: "Finance Student",
           affiliation: { "@type": "CollegeOrUniversity", name: "King Abdulaziz University" },
           sameAs: ["https://www.linkedin.com/in/imbasel/"],

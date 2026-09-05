@@ -23,7 +23,7 @@ export const Route = createFileRoute("/research/$slug")({
     const description = item.summary || item.subtitle || item.title;
     return {
       meta: [
-        { title: `${item.title} — Basel M. Alghamdi` },
+        { title: `${item.title} — Basel Alghamdi` },
         { name: "description", content: description.slice(0, 158) },
         { name: "author", content: item.author },
         { property: "article:published_time", content: item.publication_date },

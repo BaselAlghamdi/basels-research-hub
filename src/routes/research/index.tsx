@@ -11,13 +11,13 @@ const PAGE_SIZE = 8;
 export const Route = createFileRoute("/research/")({
   head: () => ({
     meta: [
-      { title: "Research & Insights — Basel M. Alghamdi" },
+      { title: "Research & Insights — Basel Alghamdi" },
       {
         name: "description",
         content:
-          "Independent research, investment analysis, company research, and market commentary by Basel M. Alghamdi.",
+          "Independent research, investment analysis, company research, and market commentary by Basel Alghamdi.",
       },
-      { property: "og:title", content: "Research & Insights — Basel M. Alghamdi" },
+      { property: "og:title", content: "Research & Insights — Basel Alghamdi" },
       {
         property: "og:description",
         content:

@@ -9,13 +9,13 @@ import { certificationsQuery } from "@/lib/certifications";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Basel M. Alghamdi" },
+      { title: "About — Basel Alghamdi" },
       {
         name: "description",
         content:
-          "Basel M. Alghamdi is a finance student at King Abdulaziz University focused on investment research, equity analysis, valuation, and financial modeling.",
+          "Basel Alghamdi is a finance student at King Abdulaziz University focused on investment research, equity analysis, valuation, and financial modeling.",
       },
-      { property: "og:title", content: "About — Basel M. Alghamdi" },
+      { property: "og:title", content: "About — Basel Alghamdi" },
       {
         property: "og:description",
         content: "Finance student focused on investment research, valuation, and financial modeling.",
